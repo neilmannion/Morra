@@ -22,10 +22,10 @@ public class Round {
 		System.out.println("pick 1 or 2");
 		playerPick = sc.nextInt(); // make a method of this
 		compPick = rn.nextInt(2) + 1;
-		if (playerPick==1) {
-			sessHistory.newGameNode.numberChoices[sessHistory.newGameNode.roundLimit] = 1 ;				
+		if (playerPick == 1) {
+			sessHistory.newGameNode.numberChoices[sessHistory.newGameNode.roundLimit] = 1;
 		} else {
-			sessHistory.newGameNode.numberChoices[sessHistory.newGameNode.roundLimit] = 2 ;							
+			sessHistory.newGameNode.numberChoices[sessHistory.newGameNode.roundLimit] = 2;
 		}
 		// method for winner
 		roundWinner = calcRoundWinner(playerPick, compPick);

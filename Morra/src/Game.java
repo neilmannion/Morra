@@ -1,57 +1,54 @@
 import java.util.Scanner;
 
 public class Game {
-	
+
 	History sessHistory;
-	
-	public Game() {}
+
+	public Game() {
+	}
 
 	public Game(History sessHistory) {
 		this.sessHistory = sessHistory;
 	}
 
-	//vars
-	boolean playerType, compType; //false=odds true=evens
-	int playerScore=0, compScore=0;
-	
-	//objects
+	// vars
+	boolean playerType, compType; // false=odds true=evens
+	int playerScore = 0, compScore = 0;
+
+	// objects
 	Scanner sc = new Scanner(System.in);
 	Round round;
 
-	
 	public void playGame() {
-		
+
 		oddsOrEvens();
 		int roundNo = 1;
-		
-		
-		
-		while(playerScore<4 && compScore<4) {
-			
+
+		while (playerScore < 4 && compScore < 4) {
+
 			round = new Round(playerType, compType, sessHistory);
-			
-			System.out.println("\tRound: " + roundNo );
+
+			System.out.println("\tRound: " + roundNo);
 			roundNo++;
 
-			round.playRound();			
-			
+			round.playRound();
+
 			if (round.getRoundWinner()) {
-				playerScore ++;
+				playerScore++;
 				System.out.println("Congrats you won this round");
-				sessHistory.newGameNode.victories[sessHistory.newGameNode.roundLimit] = true ;				
+				sessHistory.newGameNode.victories[sessHistory.newGameNode.roundLimit] = true;
 			} else {
-				compScore ++;
+				compScore++;
 				System.out.println("Too bad you lost this round");
-				sessHistory.newGameNode.victories[sessHistory.newGameNode.roundLimit] = false ;				
+				sessHistory.newGameNode.victories[sessHistory.newGameNode.roundLimit] = false;
 			}
-			
+
 			sessHistory.newGameNode.roundLimit++;
-			System.out.println("The current score is \nPlayer: " + playerScore + "	Computer: " +compScore +"\n");			
+			System.out.println("The current score is \nPlayer: " + playerScore + "	Computer: " + compScore + "\n");
 		}
-		
-		
+
 	}
-	
+
 	public boolean getWinner() {
 		if (playerScore == 4) {
 			return true;
@@ -59,7 +56,7 @@ public class Game {
 			return false;
 		}
 	}
-	
+
 	public void oddsOrEvens() {
 		System.out.println("Do you wish to play as ODDs (enter 'odd') or EVENs (enter 'even')");
 		if (sc.nextLine().toLowerCase().contains("odd")) {
@@ -73,12 +70,12 @@ public class Game {
 			compType = false;
 			History.evens++;
 			sessHistory.newGameNode.playType = true;
-			sessHistory.newGameNode.compRoundWinNo ++;
+			sessHistory.newGameNode.compRoundWinNo++;
 		}
 	}
-	
-	//play round
-	//get roundWinner
-	//check if 4 rounds won
-	
+
+	// play round
+	// get roundWinner
+	// check if 4 rounds won
+
 }
